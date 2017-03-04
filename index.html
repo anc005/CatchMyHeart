@@ -2,15 +2,12 @@
 <!--Copyright Annie Chen. March 3, 2017-->
 <html>
 	<head>
-		<meta charset="UTF-8">
     	<title>Catch My Heart By Annie Chen</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 		<style>
 			@import url('https://fonts.googleapis.com/css?family=Monofett');
-			html{
-				cursor: crosshair;
-			}
+
 			body { 
 				position: relative; 
 				background-image: radial-gradient(magenta, skyblue);
@@ -18,27 +15,27 @@
 			    background-repeat: no-repeat;
 			    height: 100%;
 			    background-attachment: fixed;
-
+			    cursor: crosshair;
+				overflow-x: hidden;
 			}
 			span { 
-	/*			background: -webkit-linear-gradient(purple, blue);
-			  -webkit-background-clip: text;
-			  -webkit-text-fill-color: transparent;*/
+
 				color: white;
 				font-family: 'Monofett', cursive;
-
-				font-size: 10vw;
+				font-size: 20vmin;
 				position: relative; 
 				text-align: center;
 				opacity: 1;
 				transition: .7s;
 				padding: 0px;
-				/*text-shadow: 0px 0px 5px white;*/
+				left: 50%;
+				width:80%;	    
+				display: inline-block;
+				word-break: break-word;
 
-				text-align: center;
 			} 
 			span:hover{
-				cursor:no-drop;			
+				cursor:no-drop;		
 			}
 
 		</style>
@@ -48,77 +45,38 @@
 		<span>Catch My &#10084;</span>
 
 		<script>
-		$('span').css({left: $(document).width()/2 - $(this).width()/3.8 + 'px', top: $(document).height()/2 - $(this).height()/9 + 'px'});
+			$('span').css({top: $(document).height()/3  + 'px'});
+			$('span').css({'margin-left': -$('span').width()/2  + 'px'});
+			var previousDocWidth = $(document).width();
+			var previousDocHeight = $(document).height();
 
-		//For changing heart color.
-		// var colors = ["red", "cyan", "lime", "purple", "orange"];
-		// var words = ["A", "B", " C ", "D", "E"];
-		// var position = -1;
+			//For web, hover
+		    $('span').mouseenter(function() {  
+		    	$('span').css({'margin': 'auto', 'width': 'auto'});
 
-		//For web, ho
-	    $('span').mouseenter(function() {  
-			var offset = $( this ).offset();
-	        $(this).html("&#10084;");   //Convert to heart 
+				var offset = $( this ).offset();
+		        $(this).html("&#10084;");   //Convert to heart 
 
-	    	var spanWidth = $(this).width();
-	    	var spanHeight = $(this).height();
+		    	var spanWidth = $(this).width();
+		    	var spanHeight = $(this).height();
 
-	        var width = $(document).width() - spanWidth - 10; //-10 due to font adjustment 
-	        var height = $(document).height() - spanHeight - 10;  //-10 due to font adjustment
-	        var x = (Math.random() * width);
-	        var y = (Math.random() * height);
+		        var width = $(document).width() - spanWidth - 10; //-10 due to font adjustment 
+		        var height = $(document).height() - spanHeight - 10;  //-10 due to font adjustment
+		        var x = (Math.random() * width);
+		        var y = (Math.random() * height);
 
-	        //Ensure new position will not accidently be under mouse again
-	        while(x >= (offset.left - spanWidth/4) && x<=(offset.left + spanWidth)){
-	        	x = (Math.random() * width);
-	        }
-	        while(y >= (offset.top - spanHeight/4) && y<=(offset.top + spanHeight)){
-	        	y = (Math.random() * height);
-	        }
+		        //Ensure new position will not accidently be under mouse again
+		        while(x >= (offset.left - spanWidth/4) && x<=(offset.left + spanWidth)){
+		        	x = (Math.random() * width);
+		        }
+		        while(y >= (offset.top - spanHeight/5) && y<=(offset.top + spanHeight)){
+		        	y = (Math.random() * height);
+		        }
 
-	        // if(position < colors.length - 1) {
-	        // 	position = position + 1;
-	        // }
-	       	// else {
-	       	// 	position = 0;
-	       	// }
-	        $(this).css({left: x + 'px', top: y + 'px' });
-	       	// $(this).css('color', colors[position]);
-			$(this).css('opacity', Math.random() + 0.01);
-	    });
-
-
-		// For mobile, click instead of hover
-	    $('span').click(function() {  
-			var offset = $( this ).offset();
-	        $(this).html("&#10084;");   //Convert to heart 
-
-	    	var spanWidth = $(this).width();
-	    	var spanHeight = $(this).height();
-
-	        var width = $(document).width() - spanWidth - 10; //-10 due to font adjustment 
-	        var height = $(document).height() - spanHeight - 10;  //-10 due to font adjustment
-	        var x = (Math.random() * width);
-	        var y = (Math.random() * height);
-
-	        //Ensure new position will not accidently be under mouse again
-	        while(x >= (offset.left - spanWidth/4) && x<=(offset.left + spanWidth)){
-	        	x = (Math.random() * width);
-	        }
-	        while(y >= (offset.top - spanHeight/4) && y<=(offset.top + spanHeight)){
-	        	y = (Math.random() * height);
-	        }
-
-	        // if(position < colors.length - 1) {
-	        // 	position = position + 1;
-	        // }
-	       	// else {
-	       	// 	position = 0;
-	       	// }
-	        $(this).css({left: x + 'px', top: y + 'px' });
-	       	// $(this).css('color', colors[position]);
-			$(this).css('opacity', Math.random() + 0.01);
-	    });
+		        $(this).css('left', x);
+				$(this).css('top', y);
+				$(this).css('opacity', Math.random() + 0.01);
+		    });
 
 		</script>
 	</body>
