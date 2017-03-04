@@ -45,10 +45,10 @@
 		<span>Catch My &#10084;</span>
 
 		<script>
+			//Starting position
 			$('span').css({top: $(document).height()/3  + 'px'});
 			$('span').css({'margin-left': -$('span').width()/2  + 'px'});
-			var previousDocWidth = $(document).width();
-			var previousDocHeight = $(document).height();
+
 
 			//For web, hover
 		    $('span').mouseenter(function() {  
@@ -69,7 +69,7 @@
 		        while(x >= (offset.left - spanWidth/4) && x<=(offset.left + spanWidth)){
 		        	x = (Math.random() * width);
 		        }
-		        while(y >= (offset.top - spanHeight/5) && y<=(offset.top + spanHeight)){
+		        while(y >= (offset.top - spanHeight/4) && y<=(offset.top + spanHeight)){
 		        	y = (Math.random() * height);
 		        }
 
@@ -78,6 +78,12 @@
 				$(this).css('opacity', Math.random() + 0.01);
 		    });
 
+		    //Proportional resizing for position
+			$(window).resize(function() {
+				$('span').css({top: $(document).height()/3  + 'px'});
+				$('span').css({'left': 50  + '%'});
+				$('span').css({'margin-left': -$('span').width()/2  + 'px'});
+			});
 		</script>
 	</body>
 </html>
